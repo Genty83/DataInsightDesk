@@ -5,9 +5,6 @@ on:
     paths:
       - 'frontend/**'
       - '.github/workflows/frontend.yml'
-    branches:
-      - develop
-      - main
   pull_request:
     paths:
       - 'frontend/**'
@@ -21,23 +18,25 @@ jobs:
         working-directory: frontend
 
     steps:
-      - name: ⬇️ Checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🧱 Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: 'pnpm'
 
-      - name: 📦 Install pnpm
-        uses: pnpm/action-setup@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
-          run_install: true
 
-      - name: 🧪 Lint
-        run: pnpm run lint
+      - name: Install dependencies
+        run: pnpm install
 
-      - name: 🏗️ Build
-        run: pnpm run build
+      - name: Run linter
+        run: pnpm lint
+
+      - name: Build project
+        run: pnpm build
