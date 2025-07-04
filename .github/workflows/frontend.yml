@@ -1,4 +1,5 @@
-name: Frontend CI
+# .github/workflows/frontend.yml
+name: Frontend CI
 
 on:
   push:
@@ -10,28 +11,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: frontend
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
+      # 1️⃣  Install pnpm FIRST
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
-          run_install: false
+          version: 8               # any stable v8.x
+          run_install: false       # we’ll run pnpm install ourselves
 
+      # 2️⃣  Then set up Node (this keeps the pnpm shim in PATH)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'            # enable pnpm‑aware cache
+
+      # 3️⃣  Install deps and build inside the frontend folder
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+        working-directory: frontend
 
-      - name: Run build
+      - name: Build frontend
         run: pnpm run build
+        working-directory: frontend
