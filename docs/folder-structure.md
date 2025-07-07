@@ -25,11 +25,11 @@ Defines the core visual shell of the app (sidebar, header, ribbon, footer, conte
     - store/
       -store.ts
       - index.tsx
-      - explorer/
-      - header/
-      - footer/
-      - ribbon/
-      - sidebar/
+    - explorer/
+    - header/
+    - footer/
+    - ribbon/
+    - sidebar/
 
 perl
 Copy
