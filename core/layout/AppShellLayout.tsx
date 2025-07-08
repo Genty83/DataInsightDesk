@@ -1,6 +1,6 @@
 
 import { Layout, Splitter } from "antd";
-import AppHeader from "./header/components/Header";
+import AppHeader from "./header/components/AppHeader";
 import AppFooter from "./footer/components/AppFooter";
 import AppSidebar from "./sidebar/components/AppSidebar";
 import AppRibbon from "./ribbon/components/AppRibbon";
