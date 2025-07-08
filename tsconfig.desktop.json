@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",                       // Modern JS features
+    "module": "CommonJS",                     // Required by Electron
+    "lib": ["ES2022", "DOM"],                 // DOM for preload + ES for modern JS
+    "rootDir": "desktop",                     // Source folder
+    "outDir": "dist-desktop",                 // Output for compiled Electron code
+    "moduleResolution": "node",              // Resolve modules like Node.js
+    "esModuleInterop": true,                  // Allow default imports from CJS
+    "resolveJsonModule": true,                // Allow importing JSON
+    "strict": true,                           // Full strict mode
+    "skipLibCheck": true,                     // Skip type checking of node_modules
+    "sourceMap": true,                        // Enable source maps
+    "types": ["node", "electron"]             // Include Node and Electron typings
+  },
+  "include": ["desktop"]
+}
