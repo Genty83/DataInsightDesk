@@ -5,9 +5,15 @@
 
 import type { ThemeConfig } from "antd";
 
+const sharedStyles = {
+  fontSize: 12,
+  borderRadius: 8,
+}
+
 // Light mode theme configuration
 const lightTheme: ThemeConfig = {
   token: {
+    ...sharedStyles,
     colorPrimary: "hsla(210, 100%, 50%)",
     colorBgBase: "hsl(210, 100%, 98%)",
     colorBgContainer: "hsl(210, 20%, 100%)",
@@ -23,10 +29,11 @@ const lightTheme: ThemeConfig = {
 // Dark mode theme configuration
 const darkTheme: ThemeConfig = {
   token: {
+    ...sharedStyles,
     colorPrimary: "hsla(210, 100%, 50%)",
     colorBgBase: "hsl(210, 20%, 10%)",
     colorBgContainer: "hsl(210, 20%, 15%)",
-    colorBgLayout: "hsl(210, 20%, 15%)",
+    colorBgLayout: "hsl(210, 20%, 10%)",
     colorBgBlur: "hsla(210, 20%, 10%, 0.8)",
     colorBgMask: "hsla(210, 20%, 10%, 0.5)",
     colorBgElevated: "hsl(210, 20%, 15%)", 
