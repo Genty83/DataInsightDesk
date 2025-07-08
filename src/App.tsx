@@ -1,13 +1,12 @@
-
+import ThemeProviderWrapper from "../core/theme/ThemeProviderWrapper";
+import AppShellLayout from "../core/layout/AppShellLayout";
 
 const App = () => {
-
   return (
-    <div>
-      <h1>Welcome to My React App</h1>
-      <p>This is a simple React application.</p>
-    </div>
-  )
-}
+    <ThemeProviderWrapper mode="dark">
+      <AppShellLayout />
+    </ThemeProviderWrapper>
+  );
+};
 
-export default App
+export default App;
