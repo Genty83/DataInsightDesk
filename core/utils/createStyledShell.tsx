@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import type { ComponentType } from "react";
 
-// ✅ Theme-driven base styles
+// ✅ Token-based base styles
 const tokenBaseStyles = css`
   background-color: ${({ theme }) => theme.colorBgContainer};
   color: ${({ theme }) => theme.colorTextBase};
@@ -9,12 +9,14 @@ const tokenBaseStyles = css`
   border-radius: ${({ theme }) => theme.borderRadius}px;
 `;
 
+// ✅ Default layout styles
 const layoutBaseStyles = css`
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
 `;
 
+// ✅ Variants for background + border style
 const variants = {
   solid: css`
     background-color: ${({ theme }) => theme.colorBgContainer};
@@ -35,10 +37,11 @@ export interface StyledShellProps {
   variant?: keyof typeof variants;
   height?: string;
   padding?: string;
-  center?: boolean;
+  align?: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
+  justify?: "flex-start" | "center" | "flex-end" | "space-between" | "space-around" | "space-evenly";
 }
 
-// ✅ Safe, typed generic version (no `any`)
+// ✅ Factory function with clean typings
 export function createStyledShell<P = unknown>(
   Component: ComponentType<P>
 ) {
@@ -48,7 +51,8 @@ export function createStyledShell<P = unknown>(
 
     ${({ height }) => height && `height: ${height};`}
     ${({ padding }) => padding && `padding: ${padding};`}
-    ${({ center }) => center && "justify-content: center;"}
+    ${({ align }) => align && `align-items: ${align};`}
+    ${({ justify }) => justify && `justify-content: ${justify};`}
     ${({ variant = "solid" }) => variants[variant]}
   `;
 }
