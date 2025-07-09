@@ -2,23 +2,15 @@ import React, { type ReactNode } from "react";
 import { ConfigProvider } from "antd";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { themeConfig } from "./theme.config";
-
-export type ThemeMode = keyof typeof themeConfig;
-
-interface ThemeProviderWrapperProps {
-  children: ReactNode;
-  mode?: ThemeMode;
-}
+import { useRibbonStore } from "../layout/ribbon/store/ribbonStore";
 
 /**
  * Combines Ant Design's ConfigProvider with styled-components' ThemeProvider,
- * keeping both theme systems in sync.
+ * keeping both theme systems in sync with Zustand.
  */
-const ThemeProviderWrapper: React.FC<ThemeProviderWrapperProps> = ({
-  children,
-  mode = "light",
-}) => {
-  const antdThemeConfig = themeConfig[mode];
+const ThemeProviderWrapper: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const themeMode = useRibbonStore((state) => state.themeMode); // reactive mode
+  const antdThemeConfig = themeConfig[themeMode];
 
   return (
     <ConfigProvider theme={antdThemeConfig}>

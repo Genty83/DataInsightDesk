@@ -14,10 +14,10 @@ const sharedStyles = {
 const lightTheme: ThemeConfig = {
   token: {
     ...sharedStyles,
-    colorPrimary: "hsla(210, 100%, 50%)",
-    colorBgBase: "hsl(210, 100%, 98%)",
+    colorPrimary: "hsl(169, 72.70%, 31.60%)",
+    colorBgBase: "hsl(170, 17.60%, 93.30%)",
     colorBgContainer: "hsl(210, 20%, 100%)",
-    colorBgLayout: "hsl(210, 20%, 100%)",
+    colorBgLayout: "hsl(170, 17.60%, 93.30%)",
     colorBgBlur: "hsla(210, 100%, 98%, 0.8)",
     colorBgMask: "hsla(210, 100%, 98%, 0.5)",
     colorBgElevated: "hsl(210, 20%, 100%)", 
@@ -31,7 +31,7 @@ const lightTheme: ThemeConfig = {
 const darkTheme: ThemeConfig = {
   token: {
     ...sharedStyles,
-    colorPrimary: "hsla(210, 100%, 50%)",
+    colorPrimary: "hsl(210, 100%, 50%)",
     colorBgBase: "hsl(210, 20%, 10%)",
     colorBgContainer: "hsl(210, 20%, 15%)",
     colorBgLayout: "hsl(210, 20%, 10%)",
