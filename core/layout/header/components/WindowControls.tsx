@@ -19,6 +19,10 @@ interface WindowControlsProps {
   danger?: boolean;
 }
 
+interface DragSafeStyle extends React.CSSProperties {
+  WebkitAppRegion?: "drag" | "no-drag";
+}
+
 const WindowControls: React.FC = () => {
   const { isMaximized, setMaximized } = useHeaderStore();
 
@@ -59,7 +63,7 @@ const WindowControls: React.FC = () => {
   ];
 
   return (
-    <Flex justify="end" align="center" gap={8}>
+    <Flex justify="end" align="center" gap={8} style={{ WebkitAppRegion: "no-drag" } as DragSafeStyle}>
       {WindowButtonsConfig.map((button, index) => (
         <Tooltip key={index} title={button.tooltip}>
           <Button

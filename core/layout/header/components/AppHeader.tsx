@@ -7,11 +7,15 @@ const StyledHeader = createStyledShell(Layout.Header);
 
 const AppHeader = () => {
   return (
-    <StyledHeader height="45px" variant="solid" justify="space-between" role="banner">
+    <StyledHeader
+      height="45px"
+      variant="solid"
+      justify="space-between"
+      role="banner"
+      dragRegion="drag"
+    >
       {/** Application Title Section */}
-      <Flex>
-        DataInsightDesk
-      </Flex>
+      <Flex>DataInsightDesk</Flex>
       {/** Center Controls Section */}
 
       {/** Window Controls Section */}

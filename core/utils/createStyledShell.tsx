@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import type { ComponentType } from "react";
 
-// ✅ Token-based base styles
+// ✅ Token-based base styles from Ant Design theme
 const tokenBaseStyles = css`
   background-color: ${({ theme }) => theme.colorBgContainer};
   color: ${({ theme }) => theme.colorTextBase};
@@ -9,14 +9,14 @@ const tokenBaseStyles = css`
   border-radius: ${({ theme }) => theme.borderRadius}px;
 `;
 
-// ✅ Default layout styles
+// ✅ Common layout styles
 const layoutBaseStyles = css`
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
 `;
 
-// ✅ Variants for background + border style
+// ✅ Visual style variants
 const variants = {
   solid: css`
     background-color: ${({ theme }) => theme.colorBgContainer};
@@ -32,16 +32,23 @@ const variants = {
   `,
 };
 
-// ✅ Props to control layout styling
+// ✅ Props interface
 export interface StyledShellProps {
   variant?: keyof typeof variants;
   height?: string;
   padding?: string;
   align?: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
-  justify?: "flex-start" | "center" | "flex-end" | "space-between" | "space-around" | "space-evenly";
+  justify?:
+    | "flex-start"
+    | "center"
+    | "flex-end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
+  dragRegion?: "drag" | "no-drag"; // new prop
 }
 
-// ✅ Factory function with clean typings
+// ✅ Factory for styled shell components
 export function createStyledShell<P = unknown>(
   Component: ComponentType<P>
 ) {
@@ -54,5 +61,9 @@ export function createStyledShell<P = unknown>(
     ${({ align }) => align && `align-items: ${align};`}
     ${({ justify }) => justify && `justify-content: ${justify};`}
     ${({ variant = "solid" }) => variants[variant]}
+    ${({ dragRegion = "no-drag" }) =>
+      dragRegion === "drag"
+        ? " -webkit-app-region: drag;"
+        : " -webkit-app-region: no-drag;"}
   `;
 }
