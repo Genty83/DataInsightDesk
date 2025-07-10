@@ -1,10 +1,14 @@
+// src/App.tsx
+import { BrowserRouter } from "react-router-dom";
 import ThemeProviderWrapper from "../core/theme/ThemeProviderWrapper";
-import AppShellLayout from "../core/layout/AppShellLayout";
+import { AppRouter } from "../core/routing/AppRouter";
 
 const App = () => {
   return (
-    <ThemeProviderWrapper mode="dark">
-      <AppShellLayout />
+    <ThemeProviderWrapper>
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
     </ThemeProviderWrapper>
   );
 };
