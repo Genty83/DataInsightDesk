@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import type { ComponentType } from "react";
 
-// ✅ Token-based base styles from Ant Design theme
+// ✅ Token-based base styles
 const tokenBaseStyles = css`
   background-color: ${({ theme }) => theme.colorBgContainer};
   color: ${({ theme }) => theme.colorTextBase};
@@ -45,14 +45,17 @@ export interface StyledShellProps {
     | "space-between"
     | "space-around"
     | "space-evenly";
-  dragRegion?: "drag" | "no-drag"; // new prop
+  dragRegion?: "drag" | "no-drag"; // Custom prop for window chrome
 }
 
-// ✅ Factory for styled shell components
+// ✅ Styled factory with prop filtering
 export function createStyledShell<P = unknown>(
   Component: ComponentType<P>
 ) {
-  return styled(Component)<P & StyledShellProps>`
+  return styled(Component).withConfig({
+    shouldForwardProp: (prop) =>
+      !["variant", "height", "padding", "align", "justify", "dragRegion"].includes(prop),
+  })<P & StyledShellProps>`
     ${tokenBaseStyles}
     ${layoutBaseStyles}
 
@@ -63,7 +66,7 @@ export function createStyledShell<P = unknown>(
     ${({ variant = "solid" }) => variants[variant]}
     ${({ dragRegion = "no-drag" }) =>
       dragRegion === "drag"
-        ? " -webkit-app-region: drag;"
-        : " -webkit-app-region: no-drag;"}
+        ? "-webkit-app-region: drag;"
+        : "-webkit-app-region: no-drag;"}
   `;
 }

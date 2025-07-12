@@ -2,32 +2,31 @@ import { lazy } from "react";
 import type { RouteMeta } from "../../../core/meta/types";
 import { HomeOutlined } from "@ant-design/icons";
 
-const HomePage = lazy(() => import("./pages/HomePage"));
+const SettingsPage = lazy(() => import("./pages/Settings"));
 
-const homeRoutes: RouteMeta[] = [
+const generalRoutes: RouteMeta[] = [
   {
     type: "page",
-    routeId: "home",
-    key: "home",
-    path: "/home",
-    label: "Home",
+    routeId: "settings",
+    key: "settings",
+    path: "/settings",
+    label: "Settings",
     icon: <HomeOutlined  />,
     badgeCount: () => 5,          // Example: notification count
     sidebarPosition: "top",
     authLevel: "public",
-    featureFlag: "homepage-access",
-    order: 1,
+    order: 2,
     showInSidebar: true,
     showInTree: true,
     showInBreadcrumb: true,
-    component: HomePage,
+    component: SettingsPage,
     lazyLoad: true,
     keepAlive: true,
     nestInParent: false,
     meta: {
-      analyticsTag: "home_view",
+      analyticsTag: "settings_view",
     },
   },
 ];
 
-export default homeRoutes;
+export default generalRoutes;
